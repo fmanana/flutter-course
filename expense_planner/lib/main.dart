@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 import './transaction.dart';
 
@@ -7,6 +9,7 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    initializeDateFormatting('en_GB', null);
     return MaterialApp(
       title: 'Flutter App',
       home: MyHomePage(),
@@ -45,14 +48,14 @@ class MyHomePage extends StatelessWidget {
                   children: <Widget>[
                     Container( // amount
                       child: Text(
-                        tx.amount.toString(),
+                        '€${tx.amount}',
                         style: TextStyle(
                           color: Colors.purple,
-                          fontSize: 20,
                           fontWeight: FontWeight.bold,
+                          fontSize: 20,
                         ),
                       ),
-                      margin: EdgeInsets.symmetric(vertical: 10, horizontal: 50),
+                      margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                       padding: EdgeInsets.all(10),
                       decoration: BoxDecoration(
                         border: Border.all(
@@ -61,18 +64,18 @@ class MyHomePage extends StatelessWidget {
                         )
                       ),
                     ),
-                    Column( // title & date
+                    Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text(
+                        Text( // title
                           tx.title,
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 16,
                           ),
                         ),
-                        Text(
-                          tx.date.toString(),
+                        Text( // date
+                          DateFormat.yMMMMd('en_GB').format(tx.date),
                           style: TextStyle(
                             color: Colors.grey,
                           ),

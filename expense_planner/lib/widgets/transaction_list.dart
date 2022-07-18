@@ -13,7 +13,7 @@ class TransactionList extends StatelessWidget {
   Widget build(BuildContext context) {
     initializeDateFormatting('en_GB', null);
     return Container(
-      height: 300,
+      height: 400,
       child: ListView.builder(
         itemBuilder: (ctx, index) {
           return Card(
@@ -23,7 +23,7 @@ class TransactionList extends StatelessWidget {
                   child: Text(
                     '€${transactions[index].amount.toStringAsFixed(2)}',
                     style: TextStyle(
-                      color: Colors.purple,
+                      color: Theme.of(context).primaryColor,
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
                     ),
@@ -32,7 +32,7 @@ class TransactionList extends StatelessWidget {
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     border: Border.all(
-                      color: Colors.purple,
+                      color: Theme.of(context).primaryColorDark,
                       width: 2
                     )
                   ),
@@ -50,7 +50,7 @@ class TransactionList extends StatelessWidget {
                     Text( // date
                       DateFormat.yMMMMd('en_GB').format(transactions[index].date),
                       style: TextStyle(
-                        color: Colors.grey,
+                        color: Theme.of(context).primaryColor,
                       ),
                     )
                   ],

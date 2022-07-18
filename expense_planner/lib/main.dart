@@ -4,7 +4,25 @@ import './widgets/new_transaction.dart';
 import './widgets/transaction_list.dart';
 import './models/transaction.dart';
 
-void main() => runApp(MyHomePage());
+void main() => runApp(MaterialApp(home: MyApp(),));
+
+class MyApp extends StatelessWidget {
+  final ThemeData theme = ThemeData(
+    primarySwatch: Colors.deepPurple,
+    fontFamily: 'Quicksand',
+  );
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Personal Expenses',
+      theme: theme.copyWith(
+        colorScheme: theme.colorScheme.copyWith(secondary: Colors.red)
+      ),
+      home: MyHomePage(),
+    );
+  }
+}
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -54,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Flutter App'),
+        title: Text('Personal Expenses'),
         actions: <Widget>[
           IconButton(
             onPressed: () => _startAddNewTransaction(context),
@@ -68,7 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Container(
               child: Card(
-                color: Colors.blue,
+                color: Theme.of(context).backgroundColor,
                 child: Text('CHART!'),
                 elevation: 5,
               ),

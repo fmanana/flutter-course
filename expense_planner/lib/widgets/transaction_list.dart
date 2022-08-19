@@ -14,7 +14,20 @@ class TransactionList extends StatelessWidget {
     initializeDateFormatting('en_GB', null);
     return Container(
       height: 400,
-      child: ListView.builder(
+      child: transactions.isEmpty
+      ? Column(
+        children: <Widget>[
+          Text(
+            'No transactions added yet!',
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
+          Image.asset(
+            'assets/images/waiting.png',
+            fit: BoxFit.cover,
+          ),
+        ],
+      )
+      : ListView.builder(
         itemBuilder: (ctx, index) {
           return Card(
             child: Row(
@@ -22,11 +35,7 @@ class TransactionList extends StatelessWidget {
                 Container( // amount
                   child: Text(
                     '€${transactions[index].amount.toStringAsFixed(2)}',
-                    style: TextStyle(
-                      color: Theme.of(context).primaryColor,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                    ),
+                    style: Theme.of(context).textTheme.titleLarge
                   ),
                   margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                   padding: EdgeInsets.all(10),
@@ -42,10 +51,7 @@ class TransactionList extends StatelessWidget {
                   children: <Widget>[
                     Text( // title
                       transactions[index].title,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
+                      style: Theme.of(context).textTheme.titleLarge
                     ),
                     Text( // date
                       DateFormat.yMMMMd('en_GB').format(transactions[index].date),

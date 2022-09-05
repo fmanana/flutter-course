@@ -14,7 +14,6 @@ class TransactionList extends StatelessWidget {
   Widget build(BuildContext context) {
     initializeDateFormatting('en_GB', null);
     return Container(
-      height: 400,
       child: transactions.isEmpty
       ? Column(
         children: <Widget>[
